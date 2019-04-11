@@ -1,0 +1,22 @@
+{
+    "env": {
+        "commonjs": true,
+        "browser": true,
+        "node": true
+    },
+    "rules": {
+        "no-console": "off",
+        "no-mixed-operators": [2]
+    },
+    "extends": [
+        "./eslint/bestPractices.json",
+        "./eslint/errors.json",
+        "./eslint/es6.json",
+        "./eslint/import.json",
+        "./eslint/jest.json",
+        "./eslint/react.json",
+        "./eslint/strict.json",
+        "./eslint/style.json",
+        "./eslint/variables.json"
+    ]
+}

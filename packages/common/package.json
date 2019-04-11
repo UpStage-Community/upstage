@@ -1,0 +1,23 @@
+{
+    "name": "@upstage/common",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc --watch"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "react": "^16.8.4",
+        "react-native": "^0.59.1",
+        "react-router-dom": "4",
+        "react-router-native": "4"
+    },
+    "devDependencies": {
+        "@types/react-native": "^0.57.41",
+        "@types/react-router-dom": "^4.3.1",
+        "@types/react-router-native": "^4.2.4",
+        "typescript": "^3.3.4000"
+    }
+}
