@@ -1,0 +1,30 @@
+type User {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  email: String @unique
+  encryptedPassword: String!
+  firstName: String
+  lastName: String
+  imageURL: String
+  resetPasswordToken: String
+  resetPasswordSentAt: DateTime
+  emailConfirmationToken: String
+  emailConfirmedAt: DateTime
+  unconfirmedEmail: String
+}
+
+type Company {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  name: String!
+  email: String
+  phone: Int
+  websiteURL: String
+  imageURL: String
+  tagline: String
+  bio: String
+  imageUpdatedAt: DateTime
+  active: Boolean
+}

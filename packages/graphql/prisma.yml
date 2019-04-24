@@ -1,0 +1,12 @@
+endpoint: http://localhost:4466
+# endpoint: https://backend-1-bfb3ee8d7a.herokuapp.com/graphql/dev
+datamodel: datamodel.prisma
+secret: 3kE&NeOqx7bs$ac*FNOSW%3Mgu4zsioC
+
+generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client/
+
+hooks:
+  post-deploy:
+    - npx nexus-prisma-generate --client ./generated/prisma-client --output ./generated/nexus-prisma
