@@ -1,5 +1,4 @@
 endpoint: http://localhost:4466
-# endpoint: https://backend-1-bfb3ee8d7a.herokuapp.com/graphql/dev
 datamodel: datamodel.prisma
 secret:  ${env:CLIENT_SECRET}
 
