@@ -1,7 +1,7 @@
 endpoint: http://localhost:4466
 # endpoint: https://backend-1-bfb3ee8d7a.herokuapp.com/graphql/dev
 datamodel: datamodel.prisma
-secret: 3kE&NeOqx7bs$ac*FNOSW%3Mgu4zsioC
+secret:  ${env:CLIENT_SECRET}
 
 generate:
   - generator: typescript-client
