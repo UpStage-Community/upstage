@@ -5,8 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "ts-node index.ts",
-        "dev": "ts-node-dev --no-notify --respawn --transpileOnly ./"
+        "start": "export $(cat .env | xargs) && ts-node index.ts",
+        "dev": "export $(cat .env | xargs) && ts-node-dev --no-notify --respawn --transpileOnly ./"
     },
     "keywords": [],
     "author": "",

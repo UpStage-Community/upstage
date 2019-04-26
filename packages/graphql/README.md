@@ -12,11 +12,6 @@ Here are the Prisma docs: https://www.prisma.io/docs
 Get [Docker](https://www.docker.com/products/docker-desktop) and then run
 `docker-compose up -d`
 
-Move the managementApiSecret (in docker-compose.yml) to a .env file as:
-`PRISMA_MANAGEMENT_API_SECRET=___SECRET___`
-
-In the future, we can split out these secrets for dev, staging and production.
-
 ### Deploy to anywhere
 Deployment targets are controlled by the `endpoint` field in `prisma.yml`.  For localhost, switch it to `http://localhost:4466`. `prisma deploy` will set it for you if you include `-n` in the deploy command, or you can set it yourself. For remotes, running the below command will allow you to choose a server or set it (once you've run `prisma login` to access your cloud account).
 
