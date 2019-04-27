@@ -15,7 +15,15 @@ export const Query = queryType({
             nullable: true,
             args: { id: idArg() },
             resolve: (parent, { id }, ctx): object => {
-                return ctx.prisma.user({ id });
+                const fragment = `
+                fragment PublicUser on User {
+                  id
+                  firstName
+                  lastName
+                  imageURL
+                }
+                `;
+                return ctx.prisma.user({ id }).$fragment(fragment);
             },
         });
     },
