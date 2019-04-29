@@ -1,5 +1,7 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": ["plugin:@typescript-eslint/recommended"],
     "parserOptions": {
         "sourceType": "module"
     },
@@ -7,6 +9,7 @@
         "es6": true
     },
     "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
         "constructor-super": 2,
         "no-const-assign": 2,
         "no-dupe-class-members": 2,
