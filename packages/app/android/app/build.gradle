@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.gunsofsteel"
+        applicationId "com.upstage"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
