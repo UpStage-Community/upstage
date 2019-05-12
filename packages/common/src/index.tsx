@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const App = () => {
+function App(): JSX.Element {
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
@@ -25,6 +25,6 @@ const App = () => {
             </View>
         </View>
     );
-};
+}
 
 export default App;

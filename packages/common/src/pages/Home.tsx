@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { RouteComponentProps } from 'react-router';
+import { StyleSheet, View, Text } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,10 +8,13 @@ const styles = StyleSheet.create({
         padding: 10,
     },
 });
-interface HomeProps extends RouteComponentProps {}
 
-const Home: React.FC<HomeProps> = () => {
-    return <View style={styles.container}>Home</View>;
-};
+function Home(): JSX.Element {
+    return (
+        <View style={styles.container}>
+            <Text>Home</Text>
+        </View>
+    );
+}
 
 export default Home;
