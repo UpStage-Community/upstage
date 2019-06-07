@@ -24,3 +24,4 @@ dist
 
 # graphql
 generated
+__generated__

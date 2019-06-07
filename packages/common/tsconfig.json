@@ -1,20 +1,22 @@
 {
     "compilerOptions": {
         "rootDir": "./src",
-        "target": "es5",
+        "target": "esnext",
         "lib": ["dom", "dom.iterable", "esnext"],
         "skipLibCheck": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
-        "module": "commonjs",
+        "module": "esnext",
         "outDir": "dist",
         "moduleResolution": "node",
-        // "declaration": true,
         "jsx": "react",
         "experimentalDecorators": true,
-        "strictPropertyInitialization": false
+        "strictPropertyInitialization": false,
+        "allowJs": true,
+        "isolatedModules": true,
+        "noEmit": true
     },
     "include": ["src"]
 }
