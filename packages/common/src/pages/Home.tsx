@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Link } from '../router';
 import { QueryRenderer, graphql } from 'react-relay';
 import getEnvironment from '../getRelayEnv';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fafafa',
         padding: 10,
     },
 });
@@ -43,7 +43,15 @@ function Home(): JSX.Element {
                 }
                 return (
                     <View>
-                        <Text>User ID: {props.viewer.id}</Text>
+                        <Link
+                            to={{
+                                pathname: `/login`,
+                                state: { loginModal: true, postLoginPath: '/' },
+                            }}
+                        >
+                            Log In
+                        </Link>
+                        <Text>User ID: {props.me ? props.me.id : 'nope'}</Text>
                     </View>
                 );
             }}

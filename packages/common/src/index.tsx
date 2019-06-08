@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Routes } from './Routes';
+import { colors } from './styles/colors';
 
 const styles = StyleSheet.create({
     container: {
@@ -10,9 +11,8 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     wrapper: {
-        backgroundColor: '#fafafa',
+        backgroundColor: colors.alabaster,
         width: '100%',
-        maxWidth: 425,
         flex: 1,
     },
 });
