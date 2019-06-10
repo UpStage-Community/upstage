@@ -12,7 +12,7 @@ const rules = {
 
 export const permissions = shield({
     Query: {
-        me: rules.isAuthenticatedUser,
+        currentUser: rules.isAuthenticatedUser,
         user: allow,
     },
 });

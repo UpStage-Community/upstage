@@ -3,7 +3,7 @@ import { idArg, queryType } from 'nexus';
 
 export const Query = queryType({
     definition(t): void {
-        t.field('me', {
+        t.field('currentUser', {
             type: 'User',
             resolve: (parent, args, ctx): object => {
                 const userId = getUserId(ctx);
