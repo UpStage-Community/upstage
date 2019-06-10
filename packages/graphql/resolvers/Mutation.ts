@@ -1,4 +1,4 @@
-import { stringArg, mutationType } from 'nexus';
+import { mutationType, arg } from 'nexus';
 import { hash, compare } from 'bcrypt';
 import { APP_SECRET } from '../utils';
 import { sign } from 'jsonwebtoken';
@@ -8,10 +8,9 @@ export const Mutation = mutationType({
         t.field('signup', {
             type: 'AuthPayload',
             args: {
-                firstName: stringArg(),
-                lastName: stringArg({ nullable: true }),
-                email: stringArg(),
-                password: stringArg(),
+                input: arg({
+                    type: 'SignUpInputType',
+                }),
             },
             resolve: async (
                 parent,
@@ -35,8 +34,9 @@ export const Mutation = mutationType({
         t.field('login', {
             type: 'AuthPayload',
             args: {
-                email: stringArg(),
-                password: stringArg(),
+                input: arg({
+                    type: 'LogInInputType',
+                }),
             },
             resolve: async (parent, { email, password }, context): Promise<any> => {
                 const user = await context.prisma.user({ email });
