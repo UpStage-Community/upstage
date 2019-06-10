@@ -1,7 +1,7 @@
 import { inputObjectType } from 'nexus';
 
-export const SignUpInputType = inputObjectType({
-    name: 'SignUpInputType',
+export const SignupInputType = inputObjectType({
+    name: 'SignupInputType',
     definition(t): void {
         t.string('firstName', { required: true });
         t.string('lastName', { required: true });
@@ -10,8 +10,8 @@ export const SignUpInputType = inputObjectType({
     },
 });
 
-export const LogInInputType = inputObjectType({
-    name: 'LogInInputType',
+export const LoginInputType = inputObjectType({
+    name: 'LoginInputType',
     definition(t): void {
         t.string('email', { required: true });
         t.string('password', { required: true });

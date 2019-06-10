@@ -9,7 +9,7 @@ export const Mutation = mutationType({
             type: 'AuthPayload',
             args: {
                 input: arg({
-                    type: 'SignUpInputType',
+                    type: 'SignupInputType',
                 }),
             },
             resolve: async (
@@ -35,7 +35,7 @@ export const Mutation = mutationType({
             type: 'AuthPayload',
             args: {
                 input: arg({
-                    type: 'LogInInputType',
+                    type: 'LoginInputType',
                 }),
             },
             resolve: async (parent, { email, password }, context): Promise<any> => {
