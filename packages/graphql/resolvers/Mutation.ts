@@ -14,11 +14,11 @@ export const Mutation = mutationType({
             },
             resolve: async (
                 parent,
-                { firstName, lastName, email, password },
-                ctx
+                { input: { firstName, lastName, email, password } },
+                context
             ): Promise<any> => {
                 const hashedPassword = await hash(password, 10);
-                const user = await ctx.prisma.createUser({
+                const user = await context.prisma.createUser({
                     firstName,
                     lastName,
                     email,
@@ -38,7 +38,7 @@ export const Mutation = mutationType({
                     type: 'LoginInputType',
                 }),
             },
-            resolve: async (parent, { email, password }, context): Promise<any> => {
+            resolve: async (parent, { input: { email, password } }, context): Promise<any> => {
                 const user = await context.prisma.user({ email });
                 if (!user) {
                     throw new Error(`No user found for email: ${email}`);
