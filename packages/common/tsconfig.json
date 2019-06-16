@@ -16,7 +16,8 @@
         "strictPropertyInitialization": false,
         "allowJs": true,
         "isolatedModules": true,
-        "noEmit": true
+        "noEmit": true,
+        "removeComments": false
     },
     "include": ["src"]
 }

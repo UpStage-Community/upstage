@@ -1,13 +1,9 @@
 import { Environment, Network, RecordSource, Store, Variables } from 'relay-runtime';
-import { AsyncStorage } from 'react-native';
+import loginHelpers from './pages/Login/loginHelpers';
 
 async function fetchQuery(operation: any, variables: Variables): Promise<Response> {
-    let authToken;
-    try {
-        authToken = await AsyncStorage.getItem('userToken');
-    } catch (error) {
-        console.error(error);
-    }
+    const authToken = await loginHelpers.getAuthToken();
+
     const requestObj = {
         method: 'POST',
         headers: {
@@ -24,7 +20,6 @@ async function fetchQuery(operation: any, variables: Variables): Promise<Respons
     }
     return fetch('http://localhost:4000/', requestObj).then(
         (response): any => {
-            console.log('response: ', response);
             return response.json();
         }
     );
