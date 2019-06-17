@@ -48,7 +48,12 @@ function Login(props: LoginProps): JSX.Element {
         <View>
             <Text>Log into your account</Text>
             <FloatingLabelInput label="Email" onChangeText={setEmail} value={email} />
-            <FloatingLabelInput label="Password" onChangeText={setPassword} value={password} />
+            <FloatingLabelInput
+                label="Password"
+                onChangeText={setPassword}
+                secureTextEntry
+                value={password}
+            />
             <Button title="Submit" onPress={onSubmit} />
             {isLoading && <Text>SPINNER</Text>}
             {!!errorMessage && <Text>{errorMessage}</Text>}

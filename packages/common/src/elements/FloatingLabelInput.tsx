@@ -5,6 +5,7 @@ import { colors } from '../styles/colors';
 interface FloatingLabelInputProps {
     label: string;
     onChangeText: (text: string) => void;
+    secureTextEntry?: boolean;
     value: string;
 }
 
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
 });
 
 function FloatingLabelInput(props: FloatingLabelInputProps): JSX.Element {
-    const { label, onChangeText, value } = props;
+    const { label, onChangeText, secureTextEntry, value } = props;
     const [isFocused, setIsFocused] = React.useState(false);
 
     const labelTopMin = 0;
@@ -86,11 +87,12 @@ function FloatingLabelInput(props: FloatingLabelInputProps): JSX.Element {
                 {label}
             </Animated.Text>
             <TextInput
-                onFocus={onFocus}
                 onBlur={onBlur}
                 onChangeText={onChangeText}
-                value={value}
+                onFocus={onFocus}
+                secureTextEntry={secureTextEntry}
                 style={[styles.input, isFocused && styles.inputFocused]}
+                value={value}
             />
         </View>
     );
