@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { Environment } from 'relay-runtime';
 import Button from '../../elements/Button';
-import Input from '../../elements/Input';
+import FloatingLabelInput from '../../elements/FloatingLabelInput';
 import { loginMutationResponse } from './__generated__/loginMutation.graphql';
 import loginHelpers from './loginHelpers';
 import loginMutation from './loginMutation';
@@ -47,10 +47,8 @@ function Login(props: LoginProps): JSX.Element {
     return (
         <View>
             <Text>Log into your account</Text>
-            <Text>Email</Text>
-            <Input onChangeText={setEmail} value={email} />
-            <Text>Password</Text>
-            <Input onChangeText={setPassword} value={password} />
+            <FloatingLabelInput label="Email" onChangeText={setEmail} value={email} />
+            <FloatingLabelInput label="Password" onChangeText={setPassword} value={password} />
             <Button title="Submit" onPress={onSubmit} />
             {isLoading && <Text>SPINNER</Text>}
             {!!errorMessage && <Text>{errorMessage}</Text>}
