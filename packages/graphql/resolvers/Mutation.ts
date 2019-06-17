@@ -10,6 +10,7 @@ export const Mutation = mutationType({
             args: {
                 input: arg({
                     type: 'SignupInputType',
+                    required: true,
                 }),
             },
             resolve: async (
