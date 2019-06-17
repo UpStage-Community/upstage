@@ -1,6 +1,6 @@
 import { Query } from './Query';
 import { User } from './User';
-import { Mutation } from './Mutation';
+import { Mutation, UserUpdateInput } from './Mutation';
 import { AuthPayload } from './AuthPayload';
 import { SignupInputType, LoginInputType } from './AuthInputTypes';
 
@@ -11,4 +11,5 @@ export const resolvers = {
     AuthPayload,
     SignupInputType,
     LoginInputType,
+    UserUpdateInput,
 };
