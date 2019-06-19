@@ -1,20 +1,11 @@
-import { arg } from 'nexus';
+import { arg, extendType } from 'nexus';
 import { hash, compare } from 'bcrypt';
 import { APP_SECRET } from '../utils';
 import { sign } from 'jsonwebtoken';
-import { prismaObjectType, prismaInputObjectType } from 'nexus-prisma';
 
-export const UserUpdateInput = prismaInputObjectType({
-    name: 'UserUpdateInput',
+export const SignupMutation = extendType({
+    type: 'Mutation',
     definition(t): void {
-        t.prismaFields(['email', 'firstName', 'lastName', 'imageURL']);
-    },
-});
-
-export const Mutation = prismaObjectType({
-    name: 'Mutation',
-    definition(t): void {
-        t.prismaFields(['updateUser']);
         t.field('signup', {
             type: 'AuthPayload',
             args: {
@@ -41,12 +32,18 @@ export const Mutation = prismaObjectType({
                 };
             },
         });
+    },
+});
 
+export const LoginMutation = extendType({
+    type: 'Mutation',
+    definition(t): void {
         t.field('login', {
             type: 'AuthPayload',
             args: {
                 input: arg({
                     type: 'LoginInputType',
+                    required: true,
                 }),
             },
             resolve: async (parent, { input: { email, password } }, context): Promise<any> => {
