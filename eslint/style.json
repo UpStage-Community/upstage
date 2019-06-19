@@ -1,6 +1,6 @@
 {
     "rules": {
-        "camelcase": 1,
+        "camelcase": 0,
         "consistent-this": [1, "self"],
         "new-cap": [
             1,

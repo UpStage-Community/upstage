@@ -10,6 +10,7 @@
     },
     "rules": {
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/camelcase": 0,
         "constructor-super": 2,
         "no-const-assign": 2,
         "no-dupe-class-members": 2,

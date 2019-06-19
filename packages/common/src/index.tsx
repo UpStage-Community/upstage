@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Routes } from './Routes';
+import RootQueryRenderer from './RootQueryRenderer';
+import { colors } from './styles/colors';
 
 const styles = StyleSheet.create({
     container: {
@@ -10,9 +11,8 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     wrapper: {
-        backgroundColor: '#fafafa',
+        backgroundColor: colors.alabaster,
         width: '100%',
-        maxWidth: 425,
         flex: 1,
     },
 });
@@ -21,7 +21,7 @@ function App(): JSX.Element {
     return (
         <View style={styles.container}>
             <View style={styles.wrapper}>
-                <Routes />
+                <RootQueryRenderer />
             </View>
         </View>
     );
