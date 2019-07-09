@@ -9351,10 +9351,6 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
-nexus-prisma@^0.3.5:
-  version "0.3.7"
-  resolved "https://registry.npmjs.org/nexus-prisma/-/nexus-prisma-0.3.7.tgz#d2a556616bb6d100c1a0b9daff89fd4394666a29"
-  integrity sha512-jkqO0ApnctX8pIzhspsUqaoBEuviWNkCBuz/S9fakC/MqDNKZkLKog519L6BAALmm5YrHts1x2+6tJvCE8MiGQ==
 
 nexus@^0.11.6:
   version "0.11.7"
