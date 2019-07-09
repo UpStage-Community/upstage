@@ -7,7 +7,7 @@ export const SignupMutation = extendType({
     type: 'Mutation',
     definition(t): void {
         t.field('signup', {
-            type: 'AuthPayload',
+            type: 'SignupPayload',
             args: {
                 input: arg({
                     type: 'SignupInputType',
