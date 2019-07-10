@@ -90,7 +90,7 @@ export const LoginMutation = extendType({
                 }),
             },
             resolve: async (parent, { input: { email, password } }, context): Promise<any> => {
-                const user = await context.prisma.user({ email });
+                const user = await context.prisma.user({ confirmedEmail: email });
                 if (!user) {
                     throw new Error(`No user found for email: ${email}`);
                 }
