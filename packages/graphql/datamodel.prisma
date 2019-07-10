@@ -11,6 +11,7 @@ type User {
   resetPasswordToken: String
   resetPasswordSentAt: DateTime
   emailConfirmationToken: String
+  signupUpdateCode: String
   emailConfirmedAt: DateTime
   isActive: Boolean
   identifiers: [String!] @scalarList(strategy: RELATION)
