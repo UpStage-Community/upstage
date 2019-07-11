@@ -20,7 +20,19 @@ export const SignupMutation = extendType({
             },
             resolve: async (
                 parent,
-                { input: { firstName, lastName, email, password } },
+                {
+                    input: {
+                        firstName,
+                        lastName,
+                        bio,
+                        email,
+                        password,
+                        signupUpdateCode,
+                        agreementVersions,
+                        identifiers,
+                        imageURL,
+                    },
+                },
                 context
             ): Promise<any> => {
                 // check if user exists in our system already
@@ -33,17 +45,10 @@ export const SignupMutation = extendType({
                 let emailConfirmationToken = Math.random()
                     .toString(36)
                     .substring(7);
-                let signupUpdateCode = Math.random()
+                let newUserSignupUpdateCode = Math.random()
                     .toString(36)
                     .substring(7);
-                let newUser = await context.prisma.createUser({
-                    firstName,
-                    lastName,
-                    unconfirmedEmail: email,
-                    emailConfirmationToken: emailConfirmationToken,
-                    signupUpdateCode: signupUpdateCode,
-                    encryptedPassword: hashedPassword,
-                });
+
                 // send confirm email to user
                 const emailConfirmationUrl =
                     'http://localhost:3000/account/verify-email?e=' +
@@ -52,7 +57,7 @@ export const SignupMutation = extendType({
                     emailConfirmationToken;
                 console.log(emailConfirmationUrl);
                 const data = {
-                    from: 'Upstage <admin@upstagecommunity.com>',
+                    from: 'Upstage <info@upstagecommunity.com>',
                     to: email,
                     subject: 'Confirm Your Email',
                     template: 'verify-email',
@@ -71,6 +76,45 @@ export const SignupMutation = extendType({
                         }
                     }
                 );
+
+                if (signupUpdateCode) {
+                    // make sure it matches user
+                    let users = await context.prisma.users({
+                        where: { unconfirmedEmail: email, signupUpdateCode: signupUpdateCode },
+                    });
+                    if (users.length) {
+                        let newUser = await context.prisma.updateUser({
+                            data: {
+                                firstName,
+                                lastName,
+                                unconfirmedEmail: email,
+                                emailConfirmationToken: emailConfirmationToken,
+                                signupUpdateCode: newUserSignupUpdateCode,
+                                encryptedPassword: hashedPassword,
+                                bio,
+                                imageURL,
+                                agreementVersions: { set: agreementVersions },
+                                identifiers: { set: identifiers },
+                            },
+                            where: { id: users[0].id },
+                        });
+
+                        return { user: newUser };
+                    }
+                }
+
+                let newUser = await context.prisma.createUser({
+                    firstName,
+                    lastName,
+                    unconfirmedEmail: email,
+                    emailConfirmationToken: emailConfirmationToken,
+                    signupUpdateCode: newUserSignupUpdateCode,
+                    encryptedPassword: hashedPassword,
+                    bio,
+                    imageURL,
+                    agreementVersions: { set: agreementVersions },
+                    identifiers: { set: identifiers },
+                });
 
                 return { user: newUser };
             },

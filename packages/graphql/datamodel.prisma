@@ -8,6 +8,7 @@ type User {
   firstName: String
   lastName: String
   imageURL: String
+  bio: String
   resetPasswordToken: String
   resetPasswordSentAt: DateTime
   emailConfirmationToken: String

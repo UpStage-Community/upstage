@@ -8,6 +8,8 @@ export const User = objectType({
         t.string('lastName');
         t.string('email', (o): string => o.confirmedEmail);
         t.string('unconfirmedEmail');
+        t.string('bio');
+        t.string('signupUpdateCode');
         t.string('confirmedEmail');
         t.string('imageURL');
         t.string('resetPasswordSentAt');
