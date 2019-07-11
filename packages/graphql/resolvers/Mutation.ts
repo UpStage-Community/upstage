@@ -150,3 +150,52 @@ export const LoginMutation = extendType({
         });
     },
 });
+
+export const EmailConfirmMutation = extendType({
+    type: 'Mutation',
+    definition(t): void {
+        t.field('emailConfirm', {
+            type: 'AuthPayload',
+            args: {
+                input: arg({
+                    type: 'EmailConfirmInputType',
+                    required: true,
+                }),
+            },
+            resolve: async (
+                parent,
+                { input: { email, emailConfirmCode } },
+                context
+            ): Promise<any> => {
+                // find user
+                console.log(emailConfirmCode);
+                const users = await context.prisma.users({
+                    where: {
+                        unconfirmedEmail: email,
+                        emailConfirmationToken: emailConfirmCode,
+                    },
+                });
+                if (!users.length) {
+                    throw new Error(`No user found for email: ${email}`);
+                }
+
+                console.log(users);
+
+                // make email confirmed
+                let user = await context.prisma.updateUser({
+                    data: {
+                        unconfirmedEmail: null,
+                        confirmedEmail: email,
+                        emailConfirmedAt: new Date(),
+                    },
+                    where: { id: users[0].id },
+                });
+
+                return {
+                    token: sign({ userId: user.id }, APP_SECRET),
+                    user: user,
+                };
+            },
+        });
+    },
+});

@@ -23,3 +23,11 @@ export const LoginInputType = inputObjectType({
         t.string('password', { required: true });
     },
 });
+
+export const EmailConfirmInputType = inputObjectType({
+    name: 'EmailConfirmInputType',
+    definition(t): void {
+        t.string('email', { required: true });
+        t.string('emailConfirmCode', { required: true });
+    },
+});
