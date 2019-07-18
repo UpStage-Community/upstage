@@ -1,15 +1,18 @@
 import { Query } from './Query';
 import { User } from './User';
-import { Mutation, UserUpdateInput } from './Mutation';
-import { AuthPayload } from './AuthPayload';
-import { SignupInputType, LoginInputType } from './AuthInputTypes';
+import { LoginMutation, SignupMutation, EmailConfirmMutation } from './Mutation';
+import { AuthPayload, SignupPayload } from './AuthPayload';
+import { SignupInputType, LoginInputType, EmailConfirmInputType } from './AuthInputTypes';
 
 export const resolvers = {
     Query,
     User,
-    Mutation,
+    LoginMutation,
+    SignupMutation,
+    EmailConfirmMutation,
     AuthPayload,
+    SignupPayload,
     SignupInputType,
     LoginInputType,
-    UserUpdateInput,
+    EmailConfirmInputType,
 };

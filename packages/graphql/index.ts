@@ -1,18 +1,12 @@
 import { prisma } from './generated/prisma-client';
 import { GraphQLServer } from 'graphql-yoga';
 import * as path from 'path';
-import datamodelInfo from './generated/nexus-prisma';
-import { makePrismaSchema } from 'nexus-prisma';
+import { makeSchema } from 'nexus';
 import * as allTypes from './resolvers';
 import { permissions } from './permissions';
 
-const schema = makePrismaSchema({
+const schema = makeSchema({
     types: allTypes,
-
-    prisma: {
-        datamodelInfo,
-        client: prisma,
-    },
 
     outputs: {
         schema: path.join(__dirname, './generated/schema.graphql'),

@@ -2,16 +2,21 @@ type User {
   id: ID! @id
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
-  email: String @unique
+  confirmedEmail: String @unique
+  unconfirmedEmail: String
   encryptedPassword: String!
   firstName: String
   lastName: String
   imageURL: String
+  bio: String
   resetPasswordToken: String
-  resetPasswordSentAt: DateTime
+  resetPasswordSentDate: DateTime
   emailConfirmationToken: String
-  emailConfirmedAt: DateTime
-  unconfirmedEmail: String
+  signupTempCode: String
+  emailConfirmedDate: DateTime
+  isActive: Boolean
+  identifiers: [String!] @scalarList(strategy: RELATION)
+  agreementVersions: [String!] @scalarList(strategy: RELATION)
 }
 
 type Company {
@@ -28,3 +33,128 @@ type Company {
   imageUpdatedAt: DateTime
   active: Boolean
 }
+
+# create_table "companies", force: :cascade do |t|
+#     t.string   "name"
+#     t.integer  "phone",              limit: 8
+#     t.string   "email"
+#     t.string   "url"
+#     t.string   "short_description"
+#     t.text     "long_description"
+#     t.string   "image_file_name"
+#     t.string   "image_content_type"
+#     t.integer  "image_file_size"
+#     t.datetime "image_updated_at"
+#     t.datetime "created_at",                   null: false
+#     t.datetime "updated_at",                   null: false
+#     t.boolean  "active"
+#   end
+#
+#   create_table "company_members", force: :cascade do |t|
+#     t.integer  "id"
+#     t.integer  "company_id"
+#     t.integer  "user_id"
+#     t.datetime "created_at", null: false
+#     t.datetime "updated_at", null: false
+#     t.boolean  "admin"
+#     t.string   "title"
+#     t.string "bio",
+#     t.string "imageURL",
+#   end
+#
+
+#   create_table "feedbacks", force: :cascade do |t|
+#     t.integer  "user_id"
+#     t.integer  "rating_id"
+#     t.text     "description"
+#     t.datetime "created_at",  null: false
+#     t.datetime "updated_at",  null: false
+#   end
+#
+#   create_table "performances", force: :cascade do |t|
+#     t.integer  "production_id"
+#     t.datetime "date"
+#     t.datetime "created_at",    null: false
+#     t.datetime "updated_at",    null: false
+#   end
+#
+#   create_table "production_members", force: :cascade do |t|
+#     t.integer  "id"
+#     t.integer  "production_id"
+#     t.integer  "user_id"
+#     t.string "bio",
+#     t.string "imageURL",
+#     t.datetime "created_at",    null: false
+#     t.datetime "updated_at",    null: false
+#   end
+#
+#   create_table "roles", force: :cascade do |t|
+#     t.integer  "member_id"
+#     t.integer  "member_type"
+#     t.integer  "user_id"
+#     t.string   "title"
+#     t.datetime "start_date" null:false
+#     t.datetime "end_date"
+#     t.datetime "created_at",    null: false
+#     t.datetime "updated_at",    null: false
+#   end
+
+#
+#   create_table "productions", force: :cascade do |t|
+#     t.array  "company_ids"
+#     t.string   "title"
+#     t.text     "description"
+#     t.string   "price_range"
+#     t.string   "ticket_url"
+#     t.string   "image_file_name"
+#     t.string   "image_content_type"
+#     t.integer  "image_file_size"
+#     t.datetime "image_updated_at"
+#     t.datetime "created_at",         null: false
+#     t.datetime "updated_at",         null: false
+#   end
+#
+#   create_table "ratings", force: :cascade do |t|
+#     t.integer  "user_id"
+#     t.integer  "performance_id"
+#     t.integer  "value"
+#     t.datetime "created_at",     null: false
+#     t.datetime "updated_at",     null: false
+#   end
+#
+#   create_table "users", force: :cascade do |t|
+#     t.string   "name"
+#     t.string   "url"
+#     t.text     "bio"
+#     t.string   "image_file_name"
+#     t.string   "image_content_type"
+#     t.integer  "image_file_size"
+#     t.datetime "image_updated_at"
+#     t.datetime "created_at",                          null: false
+#     t.datetime "updated_at",                          null: false
+#     t.string   "email",                  default: "", null: false
+#     t.string   "encrypted_password",     default: "", null: false
+#     t.string   "reset_password_token"
+#     t.datetime "reset_password_sent_at"
+#     t.datetime "remember_created_at"
+#     t.integer  "sign_in_count",          default: 0,  null: false
+#     t.datetime "current_sign_in_at"
+#     t.datetime "last_sign_in_at"
+#     t.inet     "current_sign_in_ip"
+#     t.inet     "last_sign_in_ip"
+#     t.string   "confirmation_token"
+#     t.datetime "confirmed_at"
+#     t.datetime "confirmation_sent_at"
+#     t.string   "unconfirmed_email"
+#   end
+#
+#   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+#   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+#
+#   create_table "votes", force: :cascade do |t|
+#     t.integer  "user_id"
+#     t.integer  "feedback_id"
+#     t.integer  "value"
+#     t.datetime "created_at",  null: false
+#     t.datetime "updated_at",  null: false
+#   end

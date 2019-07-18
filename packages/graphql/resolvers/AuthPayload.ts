@@ -7,3 +7,10 @@ export const AuthPayload = objectType({
         t.field('user', { type: 'User' });
     },
 });
+
+export const SignupPayload = objectType({
+    name: 'SignupPayload',
+    definition(t): void {
+        t.field('user', { type: 'User' });
+    },
+});
