@@ -180,7 +180,7 @@ export const EmailConfirmMutation = extendType({
                     data: {
                         unconfirmedEmail: null,
                         confirmedEmail: email,
-                        emailConfirmedDate: new Date(),
+                        emailConfirmedDate: new Date().toISOString(),
                     },
                     where: { id: users[0].id },
                 });
