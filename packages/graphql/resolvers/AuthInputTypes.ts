@@ -9,7 +9,7 @@ export const SignupInputType = inputObjectType({
         t.list.string('agreementVersions', { required: true });
         t.list.string('identifiers', { required: true });
         t.string('bio');
-        t.string('signupUpdateCode');
+        t.string('signupTempCode');
         t.string('email', { required: true });
         t.string('password', { required: true });
         t.string('imageURL');

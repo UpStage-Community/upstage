@@ -10,10 +10,10 @@ type User {
   imageURL: String
   bio: String
   resetPasswordToken: String
-  resetPasswordSentAt: DateTime
+  resetPasswordSentDate: DateTime
   emailConfirmationToken: String
-  signupUpdateCode: String
-  emailConfirmedAt: DateTime
+  signupTempCode: String
+  emailConfirmedDate: DateTime
   isActive: Boolean
   identifiers: [String!] @scalarList(strategy: RELATION)
   agreementVersions: [String!] @scalarList(strategy: RELATION)

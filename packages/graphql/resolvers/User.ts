@@ -9,11 +9,11 @@ export const User = objectType({
         t.string('email', (o): string => o.confirmedEmail);
         t.string('unconfirmedEmail');
         t.string('bio');
-        t.string('signupUpdateCode');
+        t.string('signupTempCode');
         t.string('confirmedEmail');
         t.string('imageURL');
-        t.string('resetPasswordSentAt');
-        t.string('emailConfirmedAt');
+        t.string('resetPasswordSentDate');
+        t.string('emailConfirmedDate');
         t.boolean('isActive');
     },
 });

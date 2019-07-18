@@ -27,7 +27,7 @@ export const SignupMutation = extendType({
                         bio,
                         email,
                         password,
-                        signupUpdateCode,
+                        signupTempCode,
                         agreementVersions,
                         identifiers,
                         imageURL,
@@ -45,7 +45,7 @@ export const SignupMutation = extendType({
                 let emailConfirmationToken = Math.random()
                     .toString(36)
                     .substring(7);
-                let newUserSignupUpdateCode = Math.random()
+                let newUserSignupTempCode = Math.random()
                     .toString(36)
                     .substring(7);
 
@@ -55,7 +55,6 @@ export const SignupMutation = extendType({
                     email +
                     '&c=' +
                     emailConfirmationToken;
-                console.log(emailConfirmationUrl);
                 const data = {
                     from: 'Upstage <info@upstagecommunity.com>',
                     to: email,
@@ -68,19 +67,17 @@ export const SignupMutation = extendType({
                 };
                 mg.messages().send(
                     data,
-                    (error, body): void => {
+                    (error): void => {
                         if (error) {
                             console.log(error);
-                        } else {
-                            console.log(body);
                         }
                     }
                 );
 
-                if (signupUpdateCode) {
+                if (signupTempCode) {
                     // make sure it matches user
                     let users = await context.prisma.users({
-                        where: { unconfirmedEmail: email, signupUpdateCode: signupUpdateCode },
+                        where: { unconfirmedEmail: email, signupTempCode: signupTempCode },
                     });
                     if (users.length) {
                         let newUser = await context.prisma.updateUser({
@@ -89,7 +86,7 @@ export const SignupMutation = extendType({
                                 lastName,
                                 unconfirmedEmail: email,
                                 emailConfirmationToken: emailConfirmationToken,
-                                signupUpdateCode: newUserSignupUpdateCode,
+                                signupTempCode: newUserSignupTempCode,
                                 encryptedPassword: hashedPassword,
                                 bio,
                                 imageURL,
@@ -108,7 +105,7 @@ export const SignupMutation = extendType({
                     lastName,
                     unconfirmedEmail: email,
                     emailConfirmationToken: emailConfirmationToken,
-                    signupUpdateCode: newUserSignupUpdateCode,
+                    signupTempCode: newUserSignupTempCode,
                     encryptedPassword: hashedPassword,
                     bio,
                     imageURL,
@@ -168,7 +165,6 @@ export const EmailConfirmMutation = extendType({
                 context
             ): Promise<any> => {
                 // find user
-                console.log(emailConfirmCode);
                 const users = await context.prisma.users({
                     where: {
                         unconfirmedEmail: email,
@@ -179,14 +175,12 @@ export const EmailConfirmMutation = extendType({
                     throw new Error(`No user found for email: ${email}`);
                 }
 
-                console.log(users);
-
                 // make email confirmed
                 let user = await context.prisma.updateUser({
                     data: {
                         unconfirmedEmail: null,
                         confirmedEmail: email,
-                        emailConfirmedAt: new Date(),
+                        emailConfirmedDate: new Date(),
                     },
                     where: { id: users[0].id },
                 });
